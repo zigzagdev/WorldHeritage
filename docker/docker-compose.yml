@@ -5,7 +5,7 @@ services:
     container_name: heritage-app
     build: ./app
     volumes:
-      - ../heritage:/var/www/html
+      - .:/var/www/html/heritage/public;
     depends_on:
       - db
 
