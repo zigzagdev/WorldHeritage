@@ -24,29 +24,26 @@ services:
 
   db:
     image: mysql:5.7
-    container_name: heritage-db
+    container_name: heritage-mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: heritage
-      MYSQL_USER: root
+      MYSQL_DATABASE: heritage-db
       MYSQL_PASSWORD: root
       TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
-      - ./db/data:/var/lib/mysql
-      - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
-      - ./logs/mysql/:/var/log/mysql/
+      - ./docker/db/data:/var/lib/mysql
+      - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./docker/db/sql:/docker-entrypoint-initdb.d
     ports:
       - 3308:3306
 
   phpmyadmin:
+    container_name: heritage_phpmyadmin
     image: phpmyadmin/phpmyadmin
-    container_name: heritage-phpmyadmin
     environment:
-      - PMA_ARBITRARY=1
-      - PMA_HOST=db
-      - PMA_USER=heritage
-      - PMA_PASSWORD=heritage
-    depends_on:
-      - db
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: heritage-db
+      MYSQL_PASSWORD: root
     ports:
       - 8080:80
