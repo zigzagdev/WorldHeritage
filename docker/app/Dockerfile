@@ -19,3 +19,7 @@ RUN docker-php-ext-install pdo pdo_mysql mysqli bcmath exif
 # install composer
 RUN cd /usr/bin && curl -s http://getcomposer.org/installer | php && ln -s /usr/bin/composer.phar /usr/bin/composer
 
+
+
+#composer create-project --prefer-dist "laravel/laravel=8.*" .
+#install project
