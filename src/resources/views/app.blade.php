@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'heritage') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/components/TopPage.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -21,6 +21,7 @@
 </head>
 <body>
   <div id="app">
+
   </div>
 </body>
 </html>
